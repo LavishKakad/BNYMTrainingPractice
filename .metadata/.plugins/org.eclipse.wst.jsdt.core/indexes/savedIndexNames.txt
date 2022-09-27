@@ -1,2 +1,0 @@
-INDEX VERSION 1.4+D:\BNYM training JAYNAM sir\GitPushFolder\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3792179447.index
