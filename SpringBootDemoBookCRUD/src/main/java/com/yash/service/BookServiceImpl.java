@@ -58,6 +58,7 @@ public class BookServiceImpl implements BookServiceI {
 			b3 = brepo.save(book);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			
 		}
 
 		return b3;
@@ -65,20 +66,19 @@ public class BookServiceImpl implements BookServiceI {
 	}
 
 	@Override
-	public int deleteBook(int id) {
-		int i = 0;
+	public String deleteBook(int id) {
+
 		try {
-			Optional<Book> bookById = getBookById(id);
-			if (bookById != null) {
+			if (id != 0) {
 				brepo.deleteById(id);
-				i = 1;
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return "book whose id " + id + " is not  present";
 		}
 
-		return i;
+		return "book whose id " + id + " is  deleted successfully..";
 	}
 
 }

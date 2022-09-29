@@ -19,58 +19,39 @@ import com.yash.service.BookServiceI;
 
 @RestController
 public class BookController {
-	
+
 	@Autowired
 	BookServiceI bser;
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/getAllBooks")
-	public ResponseEntity<List<Book>> getAllBook()
-	{
-		//System.out.println(bser.getAllBooks());
-		 List<Book> allBooks = bser.getAllBooks();
-		 return new ResponseEntity<List<Book>>(allBooks,HttpStatus.OK);
+	public ResponseEntity<List<Book>> getAllBook() {
+		List<Book> allBooks = bser.getAllBooks();
+		return new ResponseEntity<List<Book>>(allBooks, HttpStatus.OK);
 	}
-	
-	@RequestMapping(method = RequestMethod.POST,value = "/saveBook")
-	public ResponseEntity<Book> saveBook(@RequestBody Book book)
-	{
+
+	@RequestMapping(method = RequestMethod.POST, value = "/saveBook")
+	public ResponseEntity<Book> saveBook(@RequestBody Book book) {
 		Book saveBook = bser.saveBook(book);
-		return new ResponseEntity<Book>(saveBook,HttpStatus.CREATED);
+		return new ResponseEntity<Book>(saveBook, HttpStatus.CREATED);
 	}
-	
-	
-	@RequestMapping(method = RequestMethod.GET,value = "/getBookById/{id}")
-	public ResponseEntity<Object> getBookById(@PathVariable int id)
-	{
+
+	@RequestMapping(method = RequestMethod.GET, value = "/getBookById/{id}")
+	public ResponseEntity<Object> getBookById(@PathVariable int id) {
 		Optional<Book> book = bser.getBookById(id);
-		return new ResponseEntity<Object>(book,HttpStatus.OK);
+		return new ResponseEntity<Object>(book, HttpStatus.OK);
 	}
-	
-	@RequestMapping(method=RequestMethod.PUT,value = "/updateBook")
-	public ResponseEntity<Book> updateBook(@RequestBody Book book)
-	{
-		
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/updateBook")
+	public ResponseEntity<Book> updateBook(@RequestBody Book book) {
+
 		Book updateBook = bser.updateBook(book);
-		return new ResponseEntity<Book>(updateBook,HttpStatus.OK);
+		return new ResponseEntity<Book>(updateBook, HttpStatus.OK);
 	}
-	
-	
-	@RequestMapping(method=RequestMethod.DELETE,value = "/deleteBook/{id}")
-	public ResponseEntity<String> deleteBook(@PathVariable int id)
-	{
-		String msg="";
-		int j=bser.deleteBook(id);
-		if(j==1)
-		{
-			 msg= "data with id = "+id+" deleted Successfully";
-		}
-		else
-		{
-			 msg= "data with id = "+id+" not exist";
-		}
-		
-		return new ResponseEntity<String>(msg,HttpStatus.OK);
-		
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "/deleteBook/{id}")
+	public ResponseEntity<String> deleteBook(@PathVariable int id) {
+		String deleteBook = bser.deleteBook(id);
+		return new ResponseEntity<String>(deleteBook, HttpStatus.OK);
 	}
 
 }
